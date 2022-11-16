@@ -1,0 +1,12 @@
+---
+- name: Ping my hosts
+    ansible.builtin.ping:
+  
+- name: apt
+  apt:
+    update_cache: yes
+    upgrade: 'yes'
+
+- name: Print message
+  ansible.builtin.debug:
+    msg: Updates ready and server online
