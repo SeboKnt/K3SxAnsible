@@ -1,0 +1,10 @@
+
+cloneHtdocsFromGit:
+  enabled: true
+  repository: "https://github.com/Semantic-Org/example-github.git"
+  branch: "master"
+
+service:
+  ports:
+    http: 8080
+    https: 8443
