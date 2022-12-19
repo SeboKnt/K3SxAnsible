@@ -10,11 +10,11 @@
     namespace: default
     chart_ref: bitnami/apache
 
-- name: helm install postgrsql
+- name: helm install mongo
   kubernetes.core.helm:
-    name: sql
+    name: mongo
     namespace: default
-    chart_ref: bitnami/postgresql
+    chart_ref: bitnami/mongodb
 
 
 #- name: Deploy Grafana chart using values files on target
