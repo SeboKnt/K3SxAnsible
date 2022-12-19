@@ -1,0 +1,7 @@
+auth:
+  enabled: true
+  rootUser: root
+  rootPassword: "password"
+  usernames: [user]
+  passwords: [passwd]
+  databases: [sparkasse]

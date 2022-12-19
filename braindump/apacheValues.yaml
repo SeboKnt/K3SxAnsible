@@ -1,8 +1,8 @@
 
 cloneHtdocsFromGit:
   enabled: true
-  repository: "https://github.com/Semantic-Org/example-github.git"
-  branch: "master"
+  repository: "https://github.com/arisch187/projekt.git"
+  branch: "main"
 
 service:
   ports:
