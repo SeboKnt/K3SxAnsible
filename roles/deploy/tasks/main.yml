@@ -9,12 +9,16 @@
     name: apache
     namespace: default
     chart_ref: bitnami/apache
+    values_files:
+      - apacheValues.yml
 
 - name: helm install mongo
   kubernetes.core.helm:
     name: mongo
     namespace: default
     chart_ref: bitnami/mongodb
+    values_files:
+      - mongoValues.yml
 
 
 #- name: Deploy Grafana chart using values files on target

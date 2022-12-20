@@ -1,0 +1,14 @@
+auth:
+  enabled: true
+  rootUser: root
+  rootPassword: "password"
+  databases: [sparkasse]
+## @param initdbScripts Dictionary of initdb scripts
+## Specify dictionary of scripts to be run at first boot
+## Example:
+## initdbScripts:
+##   my_init_script.sh: |
+##      #!/bin/bash
+##      echo "Do something."
+##
+initdbScripts: {}
