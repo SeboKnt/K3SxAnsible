@@ -1,4 +1,9 @@
 ---
+- name: Creates directory .kube
+  file:
+    path: /root/.kube/
+    state: directory
+
 - name: Copy K3s for kubectl
   ansible.builtin.copy:
     src: /etc/rancher/k3s/k3s.yaml
