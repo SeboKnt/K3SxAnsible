@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apachephp
+  labels: 
+    app: apachephp
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 80
+      protocol: TCP
+  externalIPs:
+    - 192.168.157.128
+    - 192.168.157.129
+    - 192.168.157.130
+  selector:
+     app: apachephp

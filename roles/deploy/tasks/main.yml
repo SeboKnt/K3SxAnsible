@@ -4,13 +4,13 @@
     name: bitnami
     repo_url: "https://github.com/arisch187/projekt"
   
-- name: helm install apache
-  kubernetes.core.helm:
-    name: apache
-    namespace: default
-    chart_ref: bitnami/apache
-    values_files:
-      - apacheValues.yml
+#- name: helm install apache
+#  kubernetes.core.helm:
+#    name: apache
+#    namespace: default
+#    chart_ref: bitnami/apache
+#    values_files:
+#      - apacheValues.yml
 
 - name: helm install mongo
   kubernetes.core.helm:
@@ -20,6 +20,16 @@
     values_files:
       - mongoValues.yml
 
+- name: copy htdocs into the right path
+  ansible.builtin.copy:
+    src: htdocs
+    dest: /home/user/htdocs
+
+- name: helm install apache from local source
+  kubernetes.core.helm:
+    name: apache
+    namespace: default
+    chart_ref: apachechart
 
 #- name: Deploy Grafana chart using values files on target
 #  kubernetes.core.helm:
