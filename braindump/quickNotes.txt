@@ -1,0 +1,36 @@
+# Deploy nginx on K3S
+
+curl -sfL https://get.k3s.io | sh -
+#export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+
+mkdir $HOME/.kube
+cp /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
+chmod 600 $HOME/.kube/config
+# oder man benutzt 'sudo k3s kubectl [...]'
+
+curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+sudo apt-get install apt-transport-https --yes
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+sudo apt-get update
+sudo apt-get install helm
+
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install web bitnami/nginx
+kubectl get all
+kubectl patch svc <NAME> -p '{"spec": {"type": "LoadBalancer", "externalIPs":["<IP>"]}}'
+
+helm install nginx -f <values.yaml> bitnami/nginx
+helm install postgres bitnami/postgresql
+
+https://gist.github.com/jannegpriv/06427e4ecc2a17f317a4bebc32b6445c
+https://gist.github.com/superseb/0c06164eef5a097c66e810fe91a9d408   :(((
+https://www.ansible.com/blog/automating-helm-using-ansible
+
+kubectl exec -it demo-pod -- /bin/sh
+
+download monogsh:
+https://downloads.mongodb.com/compass/mongodb-mongosh_1.6.1_amd64.deb
+sudo dpkg -i /path/to/deb/file
+sudo apt-get install -f
+
+mongosh "10.43.193.101:27017" --username root
